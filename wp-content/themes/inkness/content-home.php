@@ -3,7 +3,6 @@
  * @package Inkness
  */
 ?>
-
 <article id="post-<?php the_ID(); ?>" <?php post_class("homa archive col-md-4"); ?>>
 <div class="article-wrapper">	
 	<?php if (has_post_thumbnail()) : ?>
