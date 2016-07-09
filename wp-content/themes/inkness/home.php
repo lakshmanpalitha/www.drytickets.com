@@ -27,12 +27,13 @@ get_header();
 
             <?php
             /* Start the Loop */ $ink_count = 0;
-            $ink_row_count = 0
+            $ink_row_count = 0;
+			echo "<div class='row-" . $ink_row_count . " row'>";
             ?>
             <?php
             while (have_posts()) : the_post();
                 if ($ink_count == 0) {
-                    echo "<div class='row-" . $ink_row_count . " row'>";
+                  //echo "<div class='row-" . $ink_row_count . " row'>";  
                 }
                 ?>
 
@@ -46,8 +47,8 @@ get_header();
                 ?>
 
                 <?php
-                if ($ink_count == 2) {
-                    echo "</div>";
+                if ($ink_count == 3) {
+                    //echo "</div>";
                     $ink_count = 0;
                     $ink_row_count++;
                 } else {
@@ -55,6 +56,7 @@ get_header();
                 }
 
             endwhile;
+			echo "</div>";
             ?>
 
             <?php inkness_pagination(); ?>

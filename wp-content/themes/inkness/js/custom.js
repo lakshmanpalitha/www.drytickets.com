@@ -72,18 +72,32 @@ function hefct() {
 //Filter events-Lakmal
 try {
     jQuery(document).on('click', '#event_filter_icon li:nth-child(1)', function() {
-        jQuery(".category-evets").css("display", "none");
-        jQuery(".category-now-on-sell").css("display", "block");
+		
+		
+		jQuery(".category-evets").hide(0);
+        jQuery(".category-now-on-sell").show(0);
+        //jQuery(".category-evets img").addClass('hide-event').removeClass('show-event');
+        //jQuery(".category-now-on-sell img").addClass('show-event').removeClass('hide-event');
     });
 
     jQuery(document).on('click', '#event_filter_icon li:nth-child(2)', function() {
-        jQuery(".category-evets").css("display", "none");
-        jQuery(".category-upcoming-events").css("display", "block");
+        //jQuery(".category-evets").css("display", "none");
+        //jQuery(".category-upcoming-events").css("display", "block");
+		
+		jQuery(".category-evets").hide(0);
+        jQuery(".category-upcoming-events").show(0);
+        //jQuery(".category-evets img").addClass('hide-event').removeClass('show-event');
+        //jQuery(".category-upcoming-events img").addClass('show-event').removeClass('hide-event');
     });
 
     jQuery(document).on('click', '#event_filter_icon li:nth-child(3)', function() {
-        jQuery(".category-evets").css("display", "none");
-        jQuery(".category-past-events").css("display", "block");
+        //jQuery(".category-evets").css("display", "none");
+        //jQuery(".category-past-events").css("display", "block");
+		
+		jQuery(".category-evets").hide(0);
+        jQuery(".category-past-events").show(0);
+        //jQuery(".category-evets img").addClass('hide-event').removeClass('show-event');
+        //jQuery(".category-past-eventss img").addClass('show-event').removeClass('hide-event');
     });
 }
 catch (err) {
