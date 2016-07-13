@@ -13,7 +13,7 @@
 		the_post_thumbnail('homepage-banner');	
 	?>
 	</a> 
-    <div class="post-title-home"><?php the_title(); ?>-<?php (the_field('event_date')); ?></div>
+    <div class="post-title-home"><?php the_title(); ?></div>
 	</div>
 	<?php endif; ?>
 	<!-- <div class="article-rest col-md-12">
