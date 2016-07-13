@@ -7,12 +7,13 @@
 <div class="article-wrapper">	
 	<?php if (has_post_thumbnail()) : ?>
 	<div class="featured-thumb col-md-12 col-xs-12">
-	<!--<a href="<?php //the_permalink(); ?>"> -->
+	<a target="_blank" href="<?php the_field('event_link'); ?>"> 
+            
 	<?php
 		the_post_thumbnail('homepage-banner');	
 	?>
-	<!--</a> -->
-    <div class="post-title-home"><?php the_title(); ?></div>
+	</a> 
+    <div class="post-title-home"><?php the_title(); ?>-<?php (the_field('event_date')); ?></div>
 	</div>
 	<?php endif; ?>
 	<!-- <div class="article-rest col-md-12">

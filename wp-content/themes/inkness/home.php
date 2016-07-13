@@ -20,20 +20,37 @@ get_header();
             $id = 54;
             $post = get_post($id);
             $content = apply_filters('the_content', $post->post_content);
-            echo $content;  
+            echo $content;
             ?>
         </div>
-        <?php if (have_posts()) : ?>
+        <?php
+        global $wp_query;
+        $args = array_merge($wp_query->query_vars, 
+                array(
+                    'meta_key'=> 'event_date',
+                    'orderby' => 'meta_value_num', 
+                    'order' => 'ASC',
+                    'meta_query' => array(
+                            'key' => 'event_date',
+                            'value' => date( "Y-m-d" ),
+                            'compare' => '>=',
+                            'type' => 'DATE', // not positive about this, maybe TIME?
+                                         ),
+                    )
+                );
+        query_posts($args);
+        if (have_posts()) :
+            ?>
 
             <?php
             /* Start the Loop */ $ink_count = 0;
             $ink_row_count = 0;
-			echo "<div class='row-" . $ink_row_count . " row'>";
+            echo "<div class='row-" . $ink_row_count . " row'>";
             ?>
             <?php
             while (have_posts()) : the_post();
                 if ($ink_count == 0) {
-                  //echo "<div class='row-" . $ink_row_count . " row'>";  
+                    //echo "<div class='row-" . $ink_row_count . " row'>";  
                 }
                 ?>
 
@@ -56,7 +73,7 @@ get_header();
                 }
 
             endwhile;
-			echo "</div>";
+            echo "</div>";
             ?>
 
             <?php inkness_pagination(); ?>
@@ -65,7 +82,7 @@ get_header();
 
             <?php get_template_part('no-results', 'index'); ?>
 
-<?php endif; ?>
+        <?php endif; ?>
 
     </main><!-- #main -->
 </div><!-- #primary -->
@@ -86,12 +103,12 @@ $content45 = apply_filters('the_content45', $post45->post_content);
         <div class="left-col col-md-8 col-xs-12">
             <h1><?php echo $title43; ?></h1>
             <div class="containt">
-<?php echo $content43; ?>
+                <?php echo $content43; ?>
             </div>
         </div>
 
         <div class="right-col col-md-4 col-xs-12">
-<?php echo $content45; ?>
+            <?php echo $content45; ?>
         </div>
     </div>
 </article>
