@@ -17,27 +17,58 @@ get_header();
         <!--        event filter button-LAKMAL-->
         <div class="row">
             <?php
-            $id = 54;
-            $post = get_post($id);
-            $content = apply_filters('the_content', $post->post_content);
-            echo $content;
+//            $id = 54;
+//            $post = get_post($id);
+//            $content = apply_filters('the_content', $post->post_content);
+            $defaults = array(
+                'child_of' => 2,
+                'current_category' => 0,
+                'depth' => 0,
+                'echo' => 1,
+                'exclude' => '',
+                'exclude_tree' => '',
+                'feed' => '',
+                'feed_image' => '',
+                'feed_type' => '',
+                'hide_empty' => 1,
+                'hide_title_if_empty' => false,
+                'hierarchical' => true,
+                'order' => 'ASC',
+                'orderby' => 'name',
+                'separator' => '<br />',
+                'show_count' => 0,
+                'show_option_all' => '',
+                'show_option_none' => __('No categories'),
+                'style' => 'list',
+                'taxonomy' => 'category',
+                'title_li' => __('Categories'),
+                'use_desc_for_title' => 1,
+            );
+            $r = wp_parse_args($args, $defaults);
+            $categories = get_categories($r);
+            if (!empty($categories)) {
+                echo '<ul id="event_filter_icon">';
+                foreach ($categories as $cat) {
+                    echo '<li id="category-'.$cat->slug.'">' . $cat->name . '</li>';
+                }
+                echo '</ul>';
+            }
             ?>
         </div>
         <?php
         global $wp_query;
-        $args = array_merge($wp_query->query_vars, 
-                array(
-                    'meta_key'=> 'event_date',
-                    'orderby' => 'meta_value_num', 
-                    'order' => 'ASC',
-                    'meta_query' => array(
-                            'key' => 'event_date',
-                            'value' => date( "Y-m-d" ),
-                            'compare' => '>=',
-                            'type' => 'DATE', // not positive about this, maybe TIME?
-                                         ),
-                    )
-                );
+        $args = array_merge($wp_query->query_vars, array(
+            'meta_key' => 'event_date',
+            'orderby' => 'meta_value_num',
+            'order' => 'ASC',
+            'meta_query' => array(
+                'key' => 'event_date',
+                'value' => date("Y-m-d"),
+                'compare' => '>=',
+                'type' => 'DATE', // not positive about this, maybe TIME?
+            ),
+                )
+        );
         query_posts($args);
         if (have_posts()) :
             ?>
