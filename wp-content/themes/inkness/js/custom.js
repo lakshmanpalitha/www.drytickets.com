@@ -72,6 +72,8 @@ function hefct() {
 //Filter events-Lakmal
 try {
     jQuery(document).on('click', '#event_filter_icon li', function() {
+        jQuery("#event_filter_icon li").removeClass("active_filter");
+        jQuery("#"+this.id).addClass("active_filter");
         jQuery(".category-evets").hide(0);
         jQuery("." + this.id).show(0);
     });
